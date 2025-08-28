@@ -1,0 +1,47 @@
+services:
+  # MongoDB Database Service
+  mongo:
+    image: mongo:latest
+    container_name: foodies_mongo
+    ports:
+      - "27019:27017"
+    volumes:
+      - mongo-data:/data/db
+    restart: unless-stopped
+
+  # Backend API Service
+  api:
+    build: ./foodiesapi 
+    container_name: foodies_api
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env             
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo:27017/foodies
+    depends_on:
+      - mongo
+    restart: unless-stopped
+
+  # Main Frontend Service
+  frontend:
+    build: ./foodies     
+    container_name: foodies_frontend
+    ports:
+      - "5173:80" # Access via http://localhost:5173
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  # Admin Panel Service
+  admin:
+    build: ./adminpanel  # <-- FIXED: Context is now the adminpanel directory
+    container_name: foodies_admin
+    ports:
+      - "5174:80" # Access via http://localhost:5174
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  mongo-data:

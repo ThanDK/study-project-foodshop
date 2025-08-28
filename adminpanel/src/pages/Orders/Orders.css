@@ -1,0 +1,37 @@
+.order-action-cell {
+  width: 150px;
+}
+
+.order-data-cell {
+  text-align: left;
+  white-space: nowrap;
+}
+
+.order-icon-cell {
+  width: 60px;
+}
+
+.order-items-cell {
+  max-width: 400px;
+  min-width: 250px;
+  word-break: break-word;
+}
+
+.order-list-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.order-list-table tbody td {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 16px 8px;
+  vertical-align: top;
+}
+
+.order-status-select {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  width: 100%;
+}

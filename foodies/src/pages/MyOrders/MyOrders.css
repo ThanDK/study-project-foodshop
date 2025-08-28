@@ -1,0 +1,124 @@
+/* MyOrders.css */
+
+.my-orders {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+/* Header container for the title and refresh button */
+.my-orders-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.my-orders-header h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0; /* Resets default margin to align with the button */
+}
+
+.refresh-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.75rem; /* Makes the icon larger */
+    color: #49557e;
+    transition: transform 0.5s ease;
+}
+
+.refresh-button:hover {
+    transform: rotate(180deg); /* Spinning effect on hover */
+}
+
+/* The main container for the list of orders */
+.my-orders-container {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden; /* Ensures the border-radius is respected by children */
+}
+
+.my-orders-order {
+    display: grid;
+    /* Columns: icon, items list (flexible), amount, item count, status, button */
+    grid-template-columns: auto 1fr auto auto auto auto;
+    align-items: center;
+    gap: 20px;
+    font-size: 14px;
+    padding: 20px;
+    color: #49557e;
+    /* Adds a line to separate each order row */
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Removes the bottom border from the very last order in the list */
+.my-orders-container .my-orders-order:last-child {
+    border-bottom: none;
+}
+
+.my-orders-order img {
+    width: 50px;
+}
+
+.my-orders-order p {
+    margin: 0;
+}
+
+.order-status {
+    font-weight: 600;
+}
+
+/* Dynamic colors for the order status text */
+.my-orders-order p[order-status="Delivered"] {
+  color: green;
+}
+.my-orders-order p[order-status="Preparing"] {
+  color: #ff6347; /* Tomato color */
+}
+.my-orders-order p[order-status="Out for delivery"] {
+  color: orange;
+}
+
+
+.order-status::before {
+    content: "● ";
+}
+
+/* "More Details" button inside each order row */
+.my-orders-order button {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.my-orders-order button:hover {
+    background-color: #e0e0e0;
+}
+
+
+/* --- Responsive Design for smaller screens --- */
+@media (max-width: 1000px) {
+    .my-orders-order {
+        /* Stacks elements for tablet and mobile */
+        grid-template-columns: 1fr;
+        row-gap: 15px;
+    }
+    
+    .my-orders-order img {
+        /* Hides the icon on small screens to save space */
+        display: none;
+    }
+
+    .my-orders-order button {
+      grid-row-start: 1; /* Moves the "More Details" button to the top */
+      justify-self: end; /* Aligns it to the right */
+      width: fit-content;
+    }
+}
